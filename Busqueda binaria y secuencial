@@ -1,0 +1,101 @@
+
+package busquedabinariaysecuencial;
+
+
+
+import java.util.Scanner;
+
+public class BusquedaBinariaySecuencial {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Obtener el tamaño del arreglo
+        System.out.print("Ingrese el tamaño del arreglo: ");
+        int tamaño = scanner.nextInt();
+        
+        // Crear el arreglo con el tamaño ingresado
+        int[] arreglo = new int[tamaño];
+        
+        // Llenar el arreglo con números ingresados por el usuario
+        System.out.println("Ingrese los elementos del arreglo:");
+        for (int i = 0; i < tamaño; i++) {
+            System.out.print("Elemento " + (i + 1) + ": ");
+            arreglo[i] = scanner.nextInt();
+        }
+        
+        // Solicitar al usuario el método de búsqueda a utilizar
+        System.out.println("Seleccione el método de búsqueda:");
+        System.out.println("1. Búsqueda secuencial");
+        System.out.println("2. Búsqueda binaria");
+        System.out.print("Opción: ");
+        int opcion = scanner.nextInt();
+        
+        // Realizar la búsqueda según la opción seleccionada
+        switch (opcion) {
+            case 1:
+                busquedaSecuencial(arreglo);
+                break;
+            case 2:
+                busquedaBinaria(arreglo);
+                break;
+            default:
+                System.out.println("Opción inválida");
+                break;
+        }
+        
+        scanner.close();
+    }
+    
+    public static void busquedaSecuencial(int[] arr) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Ingrese el número a buscar: ");
+        int numero = scanner.nextInt();
+        
+        boolean encontrado = false;
+        
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == numero) {
+                System.out.println("El número " + numero + " fue encontrado en la posición " + i);
+                encontrado = true;
+                break;
+            }
+        }
+        
+        if (!encontrado) {
+            System.out.println("El número " + numero + " no fue encontrado en el arreglo");
+        }
+        
+        scanner.close();
+    }
+    
+    public static void busquedaBinaria(int[] arr) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Ingrese el número a buscar: ");
+        int numero = scanner.nextInt();
+        
+        int inicio = 0;
+        int fin = arr.length - 1;
+        
+        while (inicio <= fin) {
+            int medio = inicio + (fin - inicio) / 2;
+            
+            if (arr[medio] == numero) {
+                System.out.println("El número " + numero + " fue encontrado en la posición " + medio);
+                break;
+            } else if (arr[medio] < numero) {
+                inicio = medio + 1;
+            } else {
+                fin = medio - 1;
+            }
+        }
+        
+        if (inicio > fin) {
+            System.out.println("El número " + numero + " no fue encontrado en el arreglo");
+        }
+        
+        scanner.close();
+    }
+}
+
