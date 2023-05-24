@@ -1,0 +1,72 @@
+package item;
+import java.util.*;
+
+class Item {
+    int valor;
+    int peso;
+
+    public Item(int valor, int peso) {
+        this.valor = valor;
+        this.peso = peso;
+    }
+}
+
+class Mochila {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese la capacidad de la mochila: ");
+        int capacidadMochila = scanner.nextInt();
+
+        List<Item> items = new ArrayList<>();
+
+        System.out.print("Ingrese el número de elementos: ");
+        int numElementos = scanner.nextInt();
+
+        // Recopilar los datos de cada elemento
+        for (int i = 1; i <= numElementos; i++) {
+            System.out.println("Ingrese los datos del elemento " + i + ":");
+            System.out.print("Valor: ");
+            int valor = scanner.nextInt();
+            System.out.print("Peso: ");
+            int peso = scanner.nextInt();
+            items.add(new Item(valor, peso));       /*
+​for donde
+
+La instrucción `new Itemnew Item(valor, peso) crea un nuevo objeto Item utilizando los
+
+Lavalor, peso dentro de los paréItem. Estos valores represent
+
+Una vezItem,items.add(new Item(valor, peso)); loitems. De
+
+En resItem con lositem */
+        }
+
+        // Resolver el problema de la mochila
+        List<Item> solucion = resolverProblemaMochila(items, capacidadMochila);
+
+        System.out.println("Los siguientes elementos se deben colocar en la mochila:");
+        for (Item item : solucion) {
+            System.out.println("Valor: " + item.valor + ", Peso: " + item.peso);
+        }
+    }
+
+    public static List<Item> resolverProblemaMochila(List<Item> items, int capacidadMochila) {
+        // Ordenar los elementos por su valor/peso en orden descendente
+        items.sort((a, b) -> Double.compare((double) b.valor / b.peso, (double) a.valor / a.peso));
+
+        List<Item> solucion = new ArrayList<>();
+        int pesoActual = 0;
+
+        // Iterar sobre los elementos en orden de valor/peso descendente
+        for (Item item : items) {
+            // Comprobar si el elemento cabe en la mochila sin exceder la capacidad
+            if (pesoActual + item.peso <= capacidadMochila) {
+                solucion.add(item);  // Agregar el elemento a la solución
+                pesoActual += item.peso;  // Actualizar el peso total de la mochila
+            }
+        }
+
+        return solucion;  // Devolver la lista de elementos seleccionados para la mochila
+    }
+}
