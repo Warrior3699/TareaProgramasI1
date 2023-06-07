@@ -1,0 +1,48 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+
+
+public class colas (
+
+
+
+public static void main(String[] args) {
+
+Queue<String> queue new LinkedList<>();
+
+System.out.println("Valor insertado: 1");
+queue.add("Elemento 1");
+ mostrarRecorridoCola (queue);
+System.out.println("Valor insertado: 2");
+queue.add("Elemento 2");
+ mostrarRecorridoCola (queue);
+
+System.out.println("Valor insertado: 3");
+
+queue.offer ("Elemento 3);
+ mostrarRecorridoCola (queue):
+
+System.println("Elementos en la colas queue.toString());
+
+sacar (queue);
+sacar(queue);
+ }
+//aqui creo el metodo
+public static void mostrarRecorridoCola (Queue<String> queue) {
+ System.out.println("Iniciar metodo recorrerCola");
+
+for (String elemento: queue) ( System.out.println("Valor visitado: "+elemento);
+ }
+ }
+private static void sacar (Queue<String> queue) {
+
+String elementosacado quebe.poll();
+ if (elementosacado != null) {
+System.out.println("Valor sacado: " + elementoSacado);
+} else {
+System.out.println("La cola esta vacia");
+}
+System.out.println("Elemento en la colad despues de sacar: " + queue.toString ();");
+}
+}
