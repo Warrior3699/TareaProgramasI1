@@ -1,0 +1,83 @@
+import java.util.TreeSet;
+
+public class ArbolBinario {
+
+    private TreeSet<Integer> arbol;
+
+    public ArbolBinario() {
+        arbol = new TreeSet<>();
+    }
+
+    public void insertar(int valor) {
+        arbol.add(valor);
+    }
+
+    public void recorridoInorden() {
+        for (int valor : arbol) {
+            System.out.print(valor + " ");
+        }
+        System.out.println();
+    }
+
+    public void recorridoPreorden() {
+        for (int valor : arbol) {
+            System.out.print(valor + " ");
+        }
+        System.out.println();
+    }
+
+    public void recorridoPosorden() {
+        TreeSet<Integer> arbolInvertido = new TreeSet<>(arbol.descendingSet());
+        for (int valor : arbolInvertido) {
+            System.out.print(valor + " ");
+        }
+        System.out.println();
+    }
+
+    public boolean buscar(int valor) {
+        return arbol.contains(valor);
+    }
+
+    public boolean eliminar(int valor) {
+        return arbol.remove(valor);
+    }
+
+    public static void main(String[] args) {
+        ArbolBinario arbol = new ArbolBinario();
+
+        // Insertar elementos en el árbol
+        arbol.insertar(50);
+        arbol.insertar(30);
+        arbol.insertar(20);
+        arbol.insertar(40);
+        arbol.insertar(70);
+        arbol.insertar(60);
+        arbol.insertar(80);
+
+        // Recorrer el árbol en orden
+        System.out.println("Recorrido inorden:");
+        arbol.recorridoInorden();
+
+        // Recorrer el árbol en preorden
+        System.out.println("Recorrido preorden:");
+        arbol.recorridoPreorden();
+
+        // Recorrer el árbol en posorden
+        System.out.println("Recorrido posorden:");
+        arbol.recorridoPosorden();
+
+        // Buscar un elemento en el árbol
+        int elementoBuscar = 40;
+        boolean encontrado = arbol.buscar(elementoBuscar);
+        System.out.println("El elemento " + elementoBuscar + " se encuentra en el árbol: " + encontrado);
+
+        // Eliminar un elemento del árbol
+        int elementoEliminar = 30;
+        boolean eliminado = arbol.eliminar(elementoEliminar);
+        System.out.println("El elemento " + elementoEliminar + " ha sido eliminado del árbol: " + eliminado);
+
+        // Recorrer el árbol después de eliminar un elemento
+        System.out.println("Recorrido inorden después de eliminar:");
+        arbol.recorridoInorden();
+    }
+}
